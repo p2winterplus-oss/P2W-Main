@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2W INTERPLUS | นวัตกรรมและการบูรณาการวิศวกรรมสไตล์สถาปัตยกรรมหรู</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B1120',
+                            light: '#1E293B',
+                            gold: '#D4AF37',
+                            accent: '#FBBF24',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Prompt"', 'sans-serif'],
+                    },
+                    animation: {
+                        'light-running': 'light-running 10s linear infinite',
+                    },
+                    keyframes: {
+                        'light-running': {
+                            '0%': { transform: 'rotate(0deg)', opacity: '0' },
+                            '5%': { transform: 'rotate(18deg)', opacity: '1' },
+                            '45%': { transform: 'rotate(342deg)', opacity: '1' },
+                            '50%': { transform: 'rotate(360deg)', opacity: '0' },
+                            '100%': { transform: 'rotate(360deg)', opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .text-gold-gradient {
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Custom shadow for better text readability against bright images */
+        .text-shadow-hard {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0,0,0,0.5);
+        }
+    </style>
+    <script>
+        // ตรวจสอบและตั้งค่าโหมดสีเริ่มต้น (ป้องกันการกระพริบของหน้าจอตอนโหลด)
+        if (localStorage.getItem('color-theme') === 'dark' || !('color-theme' in localStorage)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="antialiased selection:bg-brand-gold selection:text-brand-dark flex flex-col min-h-screen bg-gray-50 dark:bg-brand-dark text-gray-900 dark:text-[#F8FAFC] transition-colors duration-500">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 bg-white/90 dark:bg-brand-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative flex justify-center items-center w-full">
+                <!-- Center Logo -->
+                <div class="flex items-center cursor-pointer">
+                    <img src="logo.png" alt="P2W INTERPLUS" class="h-14 md:h-16 w-auto object-contain">
+                </div>
+
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" type="button" class="absolute right-0 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2 md:p-2.5 transition-colors">
+                    <i id="theme-toggle-dark-icon" class="hidden fas fa-moon text-lg md:text-xl"></i>
+                    <i id="theme-toggle-light-icon" class="hidden fas fa-sun text-lg md:text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex flex-col justify-center pt-24 pb-12 overflow-hidden">
+
+        <!-- Welcome Header -->
+        <section class="text-center px-4 mb-8 fade-in-up">
+            <h2 class="text-brand-gold tracking-[0.2em] uppercase text-xs md:text-sm font-medium mb-3 text-shadow-hard">Welcome to The Hub</h2>
+            <h1 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight text-gray-900 dark:text-white transition-colors duration-300">
+                P2W <span class="text-gold-gradient">INTERPLUS</span> GROUP
+            </h1>
+            <p class="text-sm md:text-base text-gray-600 dark:text-gray-400 font-light max-w-2xl mx-auto transition-colors duration-300">
+                เลือกบริการที่ต้องการจากกลุ่มธุรกิจของเรา
+            </p>
+        </section>
+
+        <!-- The Hub: Slanted Expanding Accordion with Animated Light Border -->
+        <section class="w-full max-w-[1600px] mx-auto px-0 md:px-4 fade-in-up" style="transition-delay: 0.2s;">
+
+            <!-- Outer Wrapper for Animated Border -->
+            <div class="relative w-full md:rounded-lg p-[2px] overflow-hidden shadow-2xl bg-gray-300 dark:bg-gray-800 transition-colors duration-500 group/hub">
+
+                <!-- Animated Spark (Runs around the border periodically) -->
+                <div class="absolute -inset-[100%] z-0 bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0%,transparent_85%,rgba(212,175,55,0.8)_95%,rgba(255,255,255,1)_100%)] animate-light-running blur-[2px]"></div>
+
+                <!-- Inner Container (Masks the center, showing only the 2px border) -->
+                <div class="relative z-10 w-full h-[850px] lg:h-[550px] md:rounded-md overflow-hidden bg-gray-300 dark:bg-gray-800 flex flex-col lg:flex-row gap-[1px] lg:gap-0 transition-colors duration-500">
+
+                    <!-- 1. วิศวกรรม -->
+                    <a href="/engineer" class="group relative flex-1 bg-brand-dark overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:flex-[2.5] lg:hover:flex-[4] lg:[clip-path:polygon(0_0,100%_0,calc(100%-80px)_100%,0_100%)]">
+                        <!-- Background: Adjusted base brightness for mobile (75) vs desktop (50) -->
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="วิศวกรรม" class="absolute inset-0 w-full h-full object-cover filter grayscale-[0.8] brightness-75 lg:brightness-50 group-hover:grayscale-0 group-hover:brightness-[0.85] transition-all duration-700 scale-[1.15] group-hover:scale-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-700"></div>
+
+                        <!-- Content -->
+                        <div class="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 md:p-6 text-center lg:pr-[40px]">
+                            <div class="transform transition-transform duration-700 group-hover:-translate-y-2 flex flex-col items-center">
+                                <!-- Added Glow Effect on Hover -->
+                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-brand-dark/60 backdrop-blur-sm border border-brand-gold/50 flex items-center justify-center mb-2 md:mb-4 group-hover:scale-110 group-hover:bg-brand-gold/20 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] group-hover:border-brand-gold transition-all duration-500">
+                                    <i class="fas fa-hard-hat text-lg md:text-2xl text-brand-gold drop-shadow-md"></i>
+                                </div>
+                                <h3 class="text-white font-bold text-base md:text-xl tracking-wider uppercase whitespace-nowrap group-hover:text-brand-gold transition-colors duration-500 text-shadow-hard">
+                                    วิศวกรรม
+                                </h3>
+                            </div>
+                            <!-- Hover Details -->
+                            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                                <div class="overflow-hidden">
+                                    <div class="pt-2 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                        <div class="w-8 h-0.5 bg-brand-gold mb-2 md:mb-3 shadow-[0_0_5px_rgba(212,175,55,0.8)]"></div>
+                                        <span class="inline-block text-white text-[10px] md:text-xs uppercase tracking-[0.2em] border-b border-brand-gold pb-1 text-shadow-hard">Enter Service</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- 2. ที่ปรึกษา -->
+                    <a href="/consult" class="group relative flex-1 bg-brand-dark overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:flex-[2.5] lg:hover:flex-[4] lg:[clip-path:polygon(80px_0,100%_0,calc(100%-80px)_100%,0_100%)] lg:-ml-[80px]">
+                        <div class="hidden lg:block absolute inset-0 z-20 pointer-events-none bg-brand-gold/30 group-hover:bg-brand-gold/80 transition-colors duration-500" style="clip-path: polygon(80px 0, 82px 0, 2px 100%, 0 100%);"></div>
+
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="ที่ปรึกษา" class="absolute inset-0 w-full h-full object-cover filter grayscale-[0.8] brightness-75 lg:brightness-50 group-hover:grayscale-0 group-hover:brightness-[0.85] transition-all duration-700 scale-[1.15] group-hover:scale-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-700"></div>
+
+                        <div class="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 md:p-6 text-center">
+                            <div class="transform transition-transform duration-700 group-hover:-translate-y-2 flex flex-col items-center">
+                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-brand-dark/60 backdrop-blur-sm border border-brand-gold/50 flex items-center justify-center mb-2 md:mb-4 group-hover:scale-110 group-hover:bg-brand-gold/20 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] group-hover:border-brand-gold transition-all duration-500">
+                                    <i class="fas fa-handshake text-lg md:text-2xl text-brand-gold drop-shadow-md"></i>
+                                </div>
+                                <h3 class="text-white font-bold text-base md:text-xl tracking-wider uppercase whitespace-nowrap group-hover:text-brand-gold transition-colors duration-500 text-shadow-hard">
+                                    ที่ปรึกษา
+                                </h3>
+                            </div>
+                            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                                <div class="overflow-hidden">
+                                    <div class="pt-2 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                        <div class="w-8 h-0.5 bg-brand-gold mb-2 md:mb-3 shadow-[0_0_5px_rgba(212,175,55,0.8)]"></div>
+                                        <span class="inline-block text-white text-[10px] md:text-xs uppercase tracking-[0.2em] border-b border-brand-gold pb-1 text-shadow-hard">Enter Service</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- 3. ขายสินค้า -->
+                    <a href="/shop" class="group relative flex-1 bg-brand-dark overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:flex-[2.5] lg:hover:flex-[4] lg:[clip-path:polygon(80px_0,100%_0,calc(100%-80px)_100%,0_100%)] lg:-ml-[80px]">
+                        <div class="hidden lg:block absolute inset-0 z-20 pointer-events-none bg-brand-gold/30 group-hover:bg-brand-gold/80 transition-colors duration-500" style="clip-path: polygon(80px 0, 82px 0, 2px 100%, 0 100%);"></div>
+
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="ขายสินค้า" class="absolute inset-0 w-full h-full object-cover filter grayscale-[0.8] brightness-75 lg:brightness-50 group-hover:grayscale-0 group-hover:brightness-[0.85] transition-all duration-700 scale-[1.15] group-hover:scale-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-700"></div>
+
+                        <div class="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 md:p-6 text-center">
+                            <div class="transform transition-transform duration-700 group-hover:-translate-y-2 flex flex-col items-center">
+                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-brand-dark/60 backdrop-blur-sm border border-brand-gold/50 flex items-center justify-center mb-2 md:mb-4 group-hover:scale-110 group-hover:bg-brand-gold/20 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] group-hover:border-brand-gold transition-all duration-500">
+                                    <i class="fas fa-shopping-bag text-lg md:text-2xl text-brand-gold drop-shadow-md"></i>
+                                </div>
+                                <h3 class="text-white font-bold text-base md:text-xl tracking-wider uppercase whitespace-nowrap group-hover:text-brand-gold transition-colors duration-500 text-shadow-hard">
+                                    ขายสินค้า
+                                </h3>
+                            </div>
+                            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                                <div class="overflow-hidden">
+                                    <div class="pt-2 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                        <p class="text-brand-gold text-[10px] md:text-xs mb-2 md:mb-3 font-light">( Food / Pet / Auto )</p>
+                                        <div class="w-8 h-0.5 bg-brand-gold mb-2 md:mb-3 shadow-[0_0_5px_rgba(212,175,55,0.8)]"></div>
+                                        <span class="inline-block text-white text-[10px] md:text-xs uppercase tracking-[0.2em] border-b border-brand-gold pb-1 text-shadow-hard">Enter Shop</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- 4. รีวิว/นายหน้า -->
+                    <a href="/review" class="group relative flex-1 bg-brand-dark overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:flex-[2.5] lg:hover:flex-[4] lg:[clip-path:polygon(80px_0,100%_0,calc(100%-80px)_100%,0_100%)] lg:-ml-[80px]">
+                        <div class="hidden lg:block absolute inset-0 z-20 pointer-events-none bg-brand-gold/30 group-hover:bg-brand-gold/80 transition-colors duration-500" style="clip-path: polygon(80px 0, 82px 0, 2px 100%, 0 100%);"></div>
+
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="รีวิว/นายหน้า" class="absolute inset-0 w-full h-full object-cover filter grayscale-[0.8] brightness-75 lg:brightness-50 group-hover:grayscale-0 group-hover:brightness-[0.85] transition-all duration-700 scale-[1.15] group-hover:scale-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-700"></div>
+
+                        <div class="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 md:p-6 text-center">
+                            <div class="transform transition-transform duration-700 group-hover:-translate-y-2 flex flex-col items-center">
+                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-brand-dark/60 backdrop-blur-sm border border-brand-gold/50 flex items-center justify-center mb-2 md:mb-4 group-hover:scale-110 group-hover:bg-brand-gold/20 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] group-hover:border-brand-gold transition-all duration-500">
+                                    <i class="fas fa-star text-lg md:text-2xl text-brand-gold drop-shadow-md"></i>
+                                </div>
+                                <h3 class="text-white font-bold text-base md:text-xl tracking-wider uppercase whitespace-nowrap group-hover:text-brand-gold transition-colors duration-500 text-shadow-hard">
+                                    รีวิว/นายหน้า
+                                </h3>
+                            </div>
+                            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                                <div class="overflow-hidden">
+                                    <div class="pt-2 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                        <div class="w-8 h-0.5 bg-brand-gold mb-2 md:mb-3 shadow-[0_0_5px_rgba(212,175,55,0.8)]"></div>
+                                        <span class="inline-block text-white text-[10px] md:text-xs uppercase tracking-[0.2em] border-b border-brand-gold pb-1 text-shadow-hard">Enter Service</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- 5. ประกันภัย -->
+                    <a href="/insurance" class="group relative flex-1 bg-brand-dark overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:flex-[2.5] lg:hover:flex-[4] lg:[clip-path:polygon(80px_0,100%_0,calc(100%-80px)_100%,0_100%)] lg:-ml-[80px]">
+                        <div class="hidden lg:block absolute inset-0 z-20 pointer-events-none bg-brand-gold/30 group-hover:bg-brand-gold/80 transition-colors duration-500" style="clip-path: polygon(80px 0, 82px 0, 2px 100%, 0 100%);"></div>
+
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66cb85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="ประกันภัย" class="absolute inset-0 w-full h-full object-cover filter grayscale-[0.8] brightness-75 lg:brightness-50 group-hover:grayscale-0 group-hover:brightness-[0.85] transition-all duration-700 scale-[1.15] group-hover:scale-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-700"></div>
+
+                        <div class="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 md:p-6 text-center">
+                            <div class="transform transition-transform duration-700 group-hover:-translate-y-2 flex flex-col items-center">
+                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-brand-dark/60 backdrop-blur-sm border border-brand-gold/50 flex items-center justify-center mb-2 md:mb-4 group-hover:scale-110 group-hover:bg-brand-gold/20 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] group-hover:border-brand-gold transition-all duration-500">
+                                    <i class="fas fa-shield-alt text-lg md:text-2xl text-brand-gold drop-shadow-md"></i>
+                                </div>
+                                <h3 class="text-white font-bold text-base md:text-xl tracking-wider uppercase whitespace-nowrap group-hover:text-brand-gold transition-colors duration-500 text-shadow-hard">
+                                    ประกันภัย
+                                </h3>
+                            </div>
+                            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                                <div class="overflow-hidden">
+                                    <div class="pt-2 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                        <div class="w-8 h-0.5 bg-brand-gold mb-2 md:mb-3 shadow-[0_0_5px_rgba(212,175,55,0.8)]"></div>
+                                        <span class="inline-block text-white text-[10px] md:text-xs uppercase tracking-[0.2em] border-b border-brand-gold pb-1 text-shadow-hard">Enter Service</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- 6. โมดิฟายรถ/Remap -->
+                    <a href="#" target="_blank" class="group relative flex-1 bg-brand-dark overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:flex-[2.5] lg:hover:flex-[4] lg:[clip-path:polygon(80px_0,100%_0,100%_100%,0_100%)] lg:-ml-[80px]">
+                        <div class="hidden lg:block absolute inset-0 z-20 pointer-events-none bg-brand-gold/30 group-hover:bg-brand-gold/80 transition-colors duration-500" style="clip-path: polygon(80px 0, 82px 0, 2px 100%, 0 100%);"></div>
+
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="โมดิฟายรถ/Remap" class="absolute inset-0 w-full h-full object-cover filter grayscale-[0.8] brightness-75 lg:brightness-50 group-hover:grayscale-0 group-hover:brightness-[0.85] transition-all duration-700 scale-[1.15] group-hover:scale-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-700"></div>
+
+                        <div class="relative z-10 flex flex-col items-center justify-center w-full h-full p-4 md:p-6 text-center lg:pl-[40px]">
+                            <div class="transform transition-transform duration-700 group-hover:-translate-y-2 flex flex-col items-center">
+                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-brand-dark/60 backdrop-blur-sm border border-brand-gold/50 flex items-center justify-center mb-2 md:mb-4 group-hover:scale-110 group-hover:bg-brand-gold/20 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] group-hover:border-brand-gold transition-all duration-500">
+                                    <i class="fas fa-car-side text-lg md:text-2xl text-brand-gold drop-shadow-md"></i>
+                                </div>
+                                <h3 class="text-white font-bold text-base md:text-xl tracking-wider uppercase whitespace-nowrap group-hover:text-brand-gold transition-colors duration-500 text-shadow-hard">
+                                    โมดิฟายรถ
+                                </h3>
+                            </div>
+                            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                                <div class="overflow-hidden">
+                                    <div class="pt-2 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                        <div class="w-8 h-0.5 bg-brand-gold mb-2 md:mb-3 shadow-[0_0_5px_rgba(212,175,55,0.8)]"></div>
+                                        <span class="flex items-center gap-2 text-white text-[10px] md:text-xs uppercase tracking-[0.1em] md:tracking-[0.2em] border-b border-brand-gold pb-1 whitespace-nowrap text-shadow-hard">
+                                            Website <i class="fas fa-external-link-alt text-[8px]"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (Corporate Style) -->
+    <footer class="bg-gray-100 dark:bg-[#050810] pt-16 pb-8 border-t border-gray-300 dark:border-gray-800 mt-auto transition-colors duration-500">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 fade-in-up">
+
+                <!-- Branding & Info -->
+                <div class="lg:col-span-2">
+                    <div class="mb-6">
+                        <img src="logo.png" alt="P2W INTERPLUS" class="h-14 w-auto object-contain">
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-md">
+                        นวัตกรรมและการบูรณาการวิศวกรรมสไตล์สถาปัตยกรรมหรู ศูนย์รวมธุรกิจวิศวกรรม ที่ปรึกษา และบริการแบบครบวงจรระดับพรีเมียม เพื่อยกระดับมาตรฐานอุตสาหกรรม
+                    </p>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-gray-900 dark:text-white font-semibold mb-6 uppercase tracking-wider text-sm">ติดต่อสำนักงานใหญ่</h4>
+                    <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-brand-gold mt-1"></i>
+                            <span>49/306 ซ.นิมิตใหม่40 ถ.นิมิตใหม่<br>แขวงสามวาตะวันออก เขตคลองสามวา<br>กรุงเทพฯ</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone-alt text-brand-gold"></i>
+                            <div class="flex flex-col gap-1">
+                                <a href="tel:0887888364" class="hover:text-brand-gold transition-colors">088-788-8364</a>
+                                <a href="tel:0887888634" class="hover:text-brand-gold transition-colors">088-788-8634</a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-brand-gold"></i>
+                            <a href="mailto:p2w.interplus@gmail.com" class="hover:text-brand-gold transition-colors">p2w.interplus@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Socials & Line -->
+                <div>
+                    <h4 class="text-gray-900 dark:text-white font-semibold mb-6 uppercase tracking-wider text-sm">ติดตามข่าวสาร</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-white dark:bg-gray-800 rounded-sm flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-brand-gold hover:text-white dark:hover:text-brand-dark shadow-sm transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://lin.ee/QJax26d" target="_blank" rel="noopener" class="w-10 h-10 bg-white dark:bg-gray-800 rounded-sm flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-brand-gold hover:text-white dark:hover:text-brand-dark shadow-sm transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                            <i class="fab fa-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white dark:bg-gray-800 rounded-sm flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-brand-gold hover:text-white dark:hover:text-brand-dark shadow-sm transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="border-t border-gray-300 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center transition-colors duration-500">
+                <p class="text-gray-500 text-xs mb-4 md:mb-0">
+                    &copy; 2025 P2W INTERPLUS GROUP. All rights reserved.
+                </p>
+                <div class="flex gap-4 text-xs text-gray-500">
+                    <a href="#" class="hover:text-brand-gold transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-gold transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // ระบบจัดการสลับธีม Day/Dark
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (document.documentElement.classList.contains('dark')) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+
+        const observerOptions = {
+            root: null, rootMargin: '0px', threshold: 0.15
+        };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in-up').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
