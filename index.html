@@ -65,6 +65,22 @@
         .text-shadow-hard {
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0,0,0,0.5);
         }
+
+        @keyframes logo-strobe {
+            0%, 100% {
+                filter: drop-shadow(0 0 3px rgba(212,175,55,0.7))
+                        drop-shadow(0 0 10px rgba(212,175,55,0.3));
+            }
+            50% {
+                filter: drop-shadow(0 0 8px rgba(212,175,55,1))
+                        drop-shadow(0 0 20px rgba(212,175,55,0.6))
+                        drop-shadow(0 0 35px rgba(251,191,36,0.3));
+            }
+        }
+
+        .dark .logo-strobe {
+            animation: logo-strobe 2.5s ease-in-out infinite;
+        }
     </style>
     <script>
         // ตรวจสอบและตั้งค่าโหมดสีเริ่มต้น (ป้องกันการกระพริบของหน้าจอตอนโหลด)
@@ -83,7 +99,7 @@
             <div class="relative flex justify-center items-center w-full">
                 <!-- Center Logo -->
                 <div class="flex items-center cursor-pointer">
-                    <img src="logo.png" alt="P2W INTERPLUS" class="h-20 md:h-24 w-auto object-contain dark:[filter:drop-shadow(0_0_6px_rgba(212,175,55,0.5))_drop-shadow(0_0_16px_rgba(212,175,55,0.2))]">
+                    <img src="logo.png" alt="P2W INTERPLUS" class="h-20 md:h-24 w-auto object-contain logo-strobe">
                 </div>
 
                 <!-- Theme Toggle Button -->
