@@ -442,5 +442,86 @@
             observer.observe(el);
         });
     </script>
+
+    <!-- Visitor Tracker → Google Sheets -->
+    <script>
+    (async function trackVisit() {
+        const TRACKER_URL = 'YOUR_APPS_SCRIPT_URL'; // ← วาง URL หลัง deploy Apps Script
+        if (!TRACKER_URL || TRACKER_URL.includes('YOUR_')) return;
+
+        // ─── Bot Detection ───────────────────────────────────────────
+        const UA = navigator.userAgent;
+        const BOT_PATTERN = /bot|crawl|spider|slurp|archive|facebookexternalhit|whatsapp|twitterbot|linkedinbot|pinterestbot|googlebot|bingbot|yandexbot|duckduckbot|ahrefsbot|semrushbot|mj12bot|dotbot|GPTBot|ChatGPT|Claude|PerplexityBot|Amazonbot|cohere-ai|anthropic-ai|CCBot/i;
+        const isBot = BOT_PATTERN.test(UA);
+        const botMatch = UA.match(/(GPTBot|ChatGPT-User|ClaudeBot|Claude-Web|CCBot|PerplexityBot|Amazonbot|anthropic-ai|cohere-ai|Googlebot|Bingbot|YandexBot|DuckDuckBot|AhrefsBot|SemrushBot|facebookexternalhit|Twitterbot|[\w-]+[Bb]ot)/);
+        const botName = isBot ? (botMatch ? botMatch[0] : 'Unknown Bot') : '-';
+
+        // ─── Device / Browser / OS ───────────────────────────────────
+        const isMobile = /Mobile|Android|iPhone/.test(UA);
+        const isTablet = /iPad|Tablet/.test(UA);
+        const device = isTablet ? 'Tablet' : isMobile ? 'Mobile' : 'Desktop';
+
+        let browser = 'Other';
+        if (/Edg\//.test(UA))      browser = 'Edge';
+        else if (/OPR\//.test(UA)) browser = 'Opera';
+        else if (/Chrome\//.test(UA)) browser = 'Chrome';
+        else if (/Firefox\//.test(UA)) browser = 'Firefox';
+        else if (/Safari\//.test(UA)) browser = 'Safari';
+
+        let os = 'Other';
+        if (/Windows/.test(UA))        os = 'Windows';
+        else if (/Mac OS X/.test(UA))  os = 'macOS';
+        else if (/Android/.test(UA))   os = 'Android';
+        else if (/iPhone|iPad/.test(UA)) os = 'iOS';
+        else if (/Linux/.test(UA))     os = 'Linux';
+
+        // ─── Thai Time ───────────────────────────────────────────────
+        const now = new Date();
+        const TH = tz => new Intl.DateTimeFormat('th-TH', { timeZone: 'Asia/Bangkok', ...tz }).format(now);
+        const timestamp = TH({ year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false });
+        const dateStr   = TH({ year:'numeric', month:'long',   day:'numeric',  weekday:'long' });
+        const timeStr   = TH({ hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false });
+
+        // ─── IP & Location (ipapi.co — free 1,000 req/day) ──────────
+        let geo = {};
+        try {
+            const res = await Promise.race([
+                fetch('https://ipapi.co/json/').then(r => r.json()),
+                new Promise((_, rej) => setTimeout(() => rej('timeout'), 4000))
+            ]);
+            geo = res;
+        } catch (_) {}
+
+        // ─── Send to Apps Script ─────────────────────────────────────
+        const payload = {
+            timestamp,
+            date: dateStr,
+            time: timeStr,
+            ip:        geo.ip           || '-',
+            country:   geo.country_name || '-',
+            region:    geo.region       || '-',
+            city:      geo.city         || '-',
+            isp:       geo.org          || '-',
+            device,
+            browser,
+            os,
+            referrer:  document.referrer || 'Direct',
+            isBot,
+            botName,
+            language:  navigator.language || '-',
+            screen:    `${screen.width}x${screen.height}`,
+            page:      window.location.pathname || '/'
+        };
+
+        try {
+            await fetch(TRACKER_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify(payload)
+            });
+        } catch (_) {}
+    })();
+    </script>
 </body>
 </html>
