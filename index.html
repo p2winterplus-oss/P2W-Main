@@ -507,6 +507,9 @@
                 <span class="font-bold text-sm tracking-widest uppercase text-gray-900 dark:text-white">P2W Admin Dashboard</span>
             </div>
             <div class="flex items-center gap-3">
+                <button id="dash-theme-toggle" class="w-7 h-7 flex items-center justify-center border border-gray-300 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-brand-gold hover:text-brand-gold transition-colors" title="เปลี่ยนโหมด">
+                    <i id="dash-theme-icon" class="fas fa-sun text-xs"></i>
+                </button>
                 <button id="dashboard-back-btn"
                     class="flex items-center gap-2 px-4 py-1.5 border border-brand-gold/40 text-brand-gold text-xs tracking-wide hover:bg-brand-gold hover:text-brand-dark transition-colors">
                     <i class="fas fa-arrow-left text-[10px]"></i> กลับหน้าแรก
@@ -527,30 +530,51 @@
                 <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
             </div>
 
-            <!-- Placeholder Cards -->
+            <!-- Stat Cards -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                 <div class="bg-white dark:bg-[#0B1120] border border-gray-200 dark:border-gray-800 p-5">
                     <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">ผู้เข้าชมวันนี้</p>
-                    <p class="text-2xl font-bold text-gray-900 dark:text-white">—</p>
+                    <p id="stat-today" class="text-2xl font-bold text-gray-900 dark:text-white">—</p>
                 </div>
                 <div class="bg-white dark:bg-[#0B1120] border border-gray-200 dark:border-gray-800 p-5">
                     <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">ทั้งหมด</p>
-                    <p class="text-2xl font-bold text-gray-900 dark:text-white">—</p>
+                    <p id="stat-total" class="text-2xl font-bold text-gray-900 dark:text-white">—</p>
                 </div>
                 <div class="bg-white dark:bg-[#0B1120] border border-gray-200 dark:border-gray-800 p-5">
                     <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">มนุษย์</p>
-                    <p class="text-2xl font-bold text-gray-900 dark:text-white">—</p>
+                    <p id="stat-human" class="text-2xl font-bold text-green-500">—</p>
                 </div>
                 <div class="bg-white dark:bg-[#0B1120] border border-gray-200 dark:border-gray-800 p-5">
                     <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">บอท</p>
-                    <p class="text-2xl font-bold text-gray-900 dark:text-white">—</p>
+                    <p id="stat-bot" class="text-2xl font-bold text-brand-gold">—</p>
                 </div>
             </div>
 
-            <!-- Placeholder area -->
-            <div class="bg-white dark:bg-[#0B1120] border border-gray-200 dark:border-gray-800 p-8 text-center text-gray-400">
-                <i class="fas fa-tools text-2xl mb-3 text-brand-gold/40"></i>
-                <p class="text-sm">กำลังพัฒนา — เพิ่มเติมข้อมูลเร็วๆ นี้</p>
+            <!-- Visitors Table -->
+            <div class="bg-white dark:bg-[#0B1120] border border-gray-200 dark:border-gray-800">
+                <div class="flex items-center justify-between px-5 py-3 border-b border-gray-100 dark:border-gray-800">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400">ผู้เข้าชมล่าสุด</span>
+                    <button id="dash-refresh-btn" class="flex items-center gap-1.5 text-xs text-brand-gold hover:text-yellow-400 transition-colors">
+                        <i class="fas fa-sync-alt text-[10px]"></i> โหลดใหม่
+                    </button>
+                </div>
+                <div id="visitors-loading" class="p-10 text-center text-gray-400 text-sm">
+                    <i class="fas fa-circle-notch fa-spin text-brand-gold/60 text-2xl mb-3 block"></i>
+                    กำลังโหลดข้อมูล...
+                </div>
+                <div id="visitors-error" class="hidden p-10 text-center text-sm">
+                    <i class="fas fa-exclamation-triangle text-2xl mb-3 block text-red-400/60"></i>
+                    <p class="text-red-400 mb-1" id="visitors-error-msg">ไม่สามารถโหลดข้อมูลได้</p>
+                    <p class="text-xs text-gray-400">ตรวจสอบว่า Apps Script มี doGet() แล้ว และ Deploy ใหม่</p>
+                </div>
+                <div id="visitors-table-wrap" class="hidden overflow-x-auto max-h-[500px] overflow-y-auto">
+                    <table class="w-full text-xs min-w-[700px]">
+                        <thead class="sticky top-0 bg-gray-50 dark:bg-[#0d1629] z-10">
+                            <tr id="visitors-thead-row" class="border-b border-gray-200 dark:border-gray-700 text-left text-gray-400 uppercase tracking-wider"></tr>
+                        </thead>
+                        <tbody id="visitors-tbody" class="divide-y divide-gray-50 dark:divide-gray-800/60"></tbody>
+                    </table>
+                </div>
             </div>
 
         </div>
@@ -640,52 +664,122 @@
     <!-- Admin Scripts (must be after modal/dashboard HTML) -->
     <script>
     (function() {
-        const ADMIN_PW = 'Chev9872';
-        const trigger   = document.getElementById('admin-trigger');
-        const modal     = document.getElementById('admin-modal');
-        const dashboard = document.getElementById('admin-dashboard');
-        const pwInput   = document.getElementById('admin-pw');
-        const loginBtn  = document.getElementById('admin-login-btn');
-        const cancelBtn = document.getElementById('admin-cancel-btn');
-        const backBtn   = document.getElementById('dashboard-back-btn');
-        const logoutBtn = document.getElementById('admin-logout-btn');
-        const errorMsg  = document.getElementById('admin-error');
+        const ADMIN_PW   = 'Chev9872';
+        const SHEET_URL  = 'https://script.google.com/macros/s/AKfycbz6ya72gdmELmCECrO28zACTdoVLcchVJXOoluHpjPTKsZnCRmYkRk5B74vvD57jHLB/exec';
+        const SHOW_COLS  = ['เวลา (ไทย)', 'IP', 'ประเทศ', 'เมือง', 'ISP', 'อุปกรณ์', 'Browser', 'OS', 'ประเภท', 'หน้า'];
 
-        function openModal() {
-            modal.classList.remove('hidden');
-            pwInput.value = '';
-            errorMsg.classList.add('hidden');
-            setTimeout(() => pwInput.focus(), 100);
+        // ── Element refs ──────────────────────────────────────────────
+        const trigger    = document.getElementById('admin-trigger');
+        const modal      = document.getElementById('admin-modal');
+        const dashboard  = document.getElementById('admin-dashboard');
+        const pwInput    = document.getElementById('admin-pw');
+        const loginBtn   = document.getElementById('admin-login-btn');
+        const cancelBtn  = document.getElementById('admin-cancel-btn');
+        const backBtn    = document.getElementById('dashboard-back-btn');
+        const logoutBtn  = document.getElementById('admin-logout-btn');
+        const errorMsg   = document.getElementById('admin-error');
+        const refreshBtn = document.getElementById('dash-refresh-btn');
+        const themeBtn   = document.getElementById('dash-theme-toggle');
+        const themeIcon  = document.getElementById('dash-theme-icon');
+
+        // ── Theme toggle (shared with main page) ──────────────────────
+        function syncThemeIcon() {
+            const isDark = document.documentElement.classList.contains('dark');
+            themeIcon.className = isDark ? 'fas fa-sun text-xs' : 'fas fa-moon text-xs';
         }
-        function closeModal() {
-            modal.classList.add('hidden');
-            pwInput.value = '';
-            errorMsg.classList.add('hidden');
-        }
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            syncThemeIcon();
+        });
+
+        // ── Modal helpers ─────────────────────────────────────────────
+        function openModal()  { modal.classList.remove('hidden'); pwInput.value = ''; errorMsg.classList.add('hidden'); setTimeout(() => pwInput.focus(), 100); }
+        function closeModal() { modal.classList.add('hidden');    pwInput.value = ''; errorMsg.classList.add('hidden'); }
         function openDashboard() {
             closeModal();
+            syncThemeIcon();
             dashboard.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+            loadDashboardData();
         }
-        function closeDashboard() {
-            dashboard.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
+        function closeDashboard() { dashboard.classList.add('hidden'); document.body.style.overflow = ''; }
         function tryLogin() {
-            if (pwInput.value === ADMIN_PW) {
-                openDashboard();
-            } else {
-                errorMsg.classList.remove('hidden');
-                pwInput.value = '';
-                pwInput.focus();
+            if (pwInput.value === ADMIN_PW) { openDashboard(); }
+            else { errorMsg.classList.remove('hidden'); pwInput.value = ''; pwInput.focus(); }
+        }
+
+        // ── Fetch Sheet data via Apps Script doGet() ──────────────────
+        async function loadDashboardData() {
+            const loading  = document.getElementById('visitors-loading');
+            const errBox   = document.getElementById('visitors-error');
+            const errMsg   = document.getElementById('visitors-error-msg');
+            const tableWrap= document.getElementById('visitors-table-wrap');
+            const theadRow = document.getElementById('visitors-thead-row');
+            const tbody    = document.getElementById('visitors-tbody');
+
+            loading.classList.remove('hidden');
+            errBox.classList.add('hidden');
+            tableWrap.classList.add('hidden');
+            ['stat-today','stat-total','stat-human','stat-bot'].forEach(id => {
+                document.getElementById(id).textContent = '...';
+            });
+
+            try {
+                const res  = await fetch(SHEET_URL, { redirect: 'follow' });
+                const data = await res.json();
+
+                if (data.error) throw new Error(data.error);
+
+                // Summary cards
+                const s = data.summary || {};
+                document.getElementById('stat-today').textContent = s.today  ?? '—';
+                document.getElementById('stat-total').textContent = s.total  ?? '—';
+                document.getElementById('stat-human').textContent = s.human  ?? '—';
+                document.getElementById('stat-bot').textContent   = s.bot    ?? '—';
+
+                // Build table
+                const headers = data.headers || [];
+                const rows    = data.recent  || [];
+                const cols    = SHOW_COLS.filter(c => headers.includes(c));
+
+                theadRow.innerHTML = cols.map(c =>
+                    `<th class="px-4 py-2 font-medium whitespace-nowrap">${c}</th>`
+                ).join('');
+
+                tbody.innerHTML = rows.map(row => {
+                    const isBot = String(row['ประเภท'] || '').includes('บอท') || String(row['ประเภท'] || '').toLowerCase().includes('bot');
+                    return `<tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors ${isBot ? 'text-brand-gold/70' : 'text-gray-700 dark:text-gray-300'}">
+                        ${cols.map(c => `<td class="px-4 py-2 whitespace-nowrap max-w-[180px] truncate" title="${String(row[c]||'')}">${row[c] ?? '—'}</td>`).join('')}
+                    </tr>`;
+                }).join('') || `<tr><td colspan="${cols.length}" class="px-4 py-8 text-center text-gray-400">ยังไม่มีข้อมูล</td></tr>`;
+
+                loading.classList.add('hidden');
+                tableWrap.classList.remove('hidden');
+
+            } catch (err) {
+                loading.classList.add('hidden');
+                errMsg.textContent = err.message || 'ไม่สามารถโหลดข้อมูลได้';
+                errBox.classList.remove('hidden');
+                ['stat-today','stat-total','stat-human','stat-bot'].forEach(id => {
+                    document.getElementById(id).textContent = '—';
+                });
             }
         }
 
+        // ── Event listeners ───────────────────────────────────────────
         trigger.addEventListener('click', openModal);
         cancelBtn.addEventListener('click', closeModal);
         loginBtn.addEventListener('click', tryLogin);
         backBtn.addEventListener('click', closeDashboard);
         logoutBtn.addEventListener('click', closeDashboard);
+        refreshBtn.addEventListener('click', loadDashboardData);
         pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
         modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
     })();
