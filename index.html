@@ -90,6 +90,27 @@
         .dark .logo-strobe {
             animation: logo-stroke-pulse 5s ease-in-out infinite;
         }
+
+        /* Hub border spark — dark mode: gold trail + white tip */
+        .hub-spark {
+            background: conic-gradient(
+                from 0deg at 50% 50%,
+                transparent 0%,
+                transparent 85%,
+                rgba(212, 175, 55, 0.8) 95%,
+                rgba(255, 255, 255, 1) 100%
+            );
+        }
+        /* Hub border spark — light mode: deep amber trail + bright gold tip */
+        :not(.dark) .hub-spark {
+            background: conic-gradient(
+                from 0deg at 50% 50%,
+                transparent 0%,
+                transparent 80%,
+                rgba(140, 80, 0, 0.9) 90%,
+                rgba(255, 170, 0, 1) 100%
+            );
+        }
     </style>
     <script>
         // ตรวจสอบและตั้งค่าโหมดสีเริ่มต้น (ป้องกันการกระพริบของหน้าจอตอนโหลด)
@@ -138,13 +159,13 @@
         <section class="w-full max-w-[1600px] mx-auto px-0 md:px-4 fade-in-up" style="transition-delay: 0.2s;">
 
             <!-- Outer Wrapper for Animated Border -->
-            <div class="relative w-full md:rounded-lg p-[2px] overflow-hidden shadow-2xl bg-gray-300 dark:bg-gray-800 transition-colors duration-500 group/hub">
+            <div class="relative w-full md:rounded-lg p-[2px] overflow-hidden shadow-2xl bg-[#1E293B] dark:bg-gray-800 transition-colors duration-500 group/hub">
 
                 <!-- Animated Spark (Runs around the border periodically) -->
-                <div class="absolute -inset-[100%] z-0 bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0%,transparent_85%,rgba(212,175,55,0.8)_95%,rgba(255,255,255,1)_100%)] animate-light-running blur-[2px]"></div>
+                <div class="hub-spark absolute -inset-[100%] z-0 animate-light-running blur-[2px]"></div>
 
                 <!-- Inner Container (Masks the center, showing only the 2px border) -->
-                <div class="relative z-10 w-full h-[850px] lg:h-[550px] md:rounded-md overflow-hidden bg-gray-300 dark:bg-gray-800 flex flex-col lg:flex-row gap-[1px] lg:gap-0 transition-colors duration-500">
+                <div class="relative z-10 w-full h-[850px] lg:h-[550px] md:rounded-md overflow-hidden bg-gray-50 dark:bg-gray-800 flex flex-col lg:flex-row gap-[1px] lg:gap-0 transition-colors duration-500">
 
                     <!-- 1. วิศวกรรม -->
                     <a href="https://p2winterplus-oss.github.io/P2W-Engineer/#home" class="group relative flex-1 bg-brand-dark overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:flex-[2.5] lg:hover:flex-[4] lg:[clip-path:polygon(0_0,100%_0,calc(100%-80px)_100%,0_100%)]">
