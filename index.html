@@ -380,9 +380,13 @@
                 <p class="text-gray-500 text-xs mb-4 md:mb-0">
                     &copy; 2025 P2W INTERPLUS GROUP. All rights reserved.
                 </p>
-                <div class="flex gap-4 text-xs text-gray-500">
+                <div class="flex items-center gap-4 text-xs text-gray-500">
                     <a href="#" class="hover:text-brand-gold transition-colors">Privacy Policy</a>
                     <a href="#" class="hover:text-brand-gold transition-colors">Terms of Service</a>
+                    <!-- Hidden Admin Trigger -->
+                    <button id="admin-trigger" class="opacity-10 hover:opacity-40 transition-opacity duration-300 text-gray-500 cursor-default" aria-hidden="true">
+                        <i class="fas fa-lock text-[10px]"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -443,6 +447,147 @@
             observer.observe(el);
         });
     </script>
+
+    <!-- Admin Scripts -->
+    <script>
+    (function() {
+        const ADMIN_PW = 'Chev9872';
+        const trigger   = document.getElementById('admin-trigger');
+        const modal     = document.getElementById('admin-modal');
+        const dashboard = document.getElementById('admin-dashboard');
+        const pwInput   = document.getElementById('admin-pw');
+        const loginBtn  = document.getElementById('admin-login-btn');
+        const cancelBtn = document.getElementById('admin-cancel-btn');
+        const backBtn   = document.getElementById('dashboard-back-btn');
+        const logoutBtn = document.getElementById('admin-logout-btn');
+        const errorMsg  = document.getElementById('admin-error');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            pwInput.value = '';
+            errorMsg.classList.add('hidden');
+            setTimeout(() => pwInput.focus(), 100);
+        }
+        function closeModal() {
+            modal.classList.add('hidden');
+            pwInput.value = '';
+            errorMsg.classList.add('hidden');
+        }
+        function openDashboard() {
+            closeModal();
+            dashboard.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDashboard() {
+            dashboard.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        function tryLogin() {
+            if (pwInput.value === ADMIN_PW) {
+                openDashboard();
+            } else {
+                errorMsg.classList.remove('hidden');
+                pwInput.value = '';
+                pwInput.focus();
+            }
+        }
+
+        trigger.addEventListener('click', openModal);
+        cancelBtn.addEventListener('click', closeModal);
+        loginBtn.addEventListener('click', tryLogin);
+        backBtn.addEventListener('click', closeDashboard);
+        logoutBtn.addEventListener('click', closeDashboard);
+        pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    })();
+    </script>
+
+    <!-- ===== Admin Password Modal ===== -->
+    <div id="admin-modal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+        <div class="bg-white dark:bg-[#0B1120] border border-brand-gold/30 p-8 w-[320px] shadow-2xl">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-8 h-8 border border-brand-gold flex items-center justify-center">
+                    <i class="fas fa-lock text-brand-gold text-xs"></i>
+                </div>
+                <h3 class="font-bold text-sm tracking-widest uppercase text-gray-900 dark:text-white">Admin Access</h3>
+            </div>
+            <input id="admin-pw" type="password" placeholder="รหัสผ่าน"
+                class="w-full px-4 py-2.5 text-sm border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-gold mb-2"
+                autocomplete="off" />
+            <p id="admin-error" class="hidden text-red-400 text-xs mb-3">รหัสผ่านไม่ถูกต้อง</p>
+            <div class="flex gap-2 mt-4">
+                <button id="admin-login-btn"
+                    class="flex-1 py-2.5 bg-brand-gold text-brand-dark text-sm font-semibold tracking-wide hover:bg-yellow-400 transition-colors">
+                    เข้าสู่ระบบ
+                </button>
+                <button id="admin-cancel-btn"
+                    class="px-4 py-2.5 border border-gray-300 dark:border-gray-700 text-gray-500 text-sm hover:border-brand-gold hover:text-brand-gold transition-colors">
+                    ยกเลิก
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Admin Dashboard ===== -->
+    <div id="admin-dashboard" class="hidden fixed inset-0 z-[200] bg-gray-50 dark:bg-[#060b18] overflow-y-auto">
+
+        <!-- Dashboard Navbar -->
+        <div class="sticky top-0 z-10 bg-white/90 dark:bg-[#0B1120]/90 backdrop-blur-md border-b border-brand-gold/20 px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 border border-brand-gold flex items-center justify-center">
+                    <i class="fas fa-chart-line text-brand-gold text-xs"></i>
+                </div>
+                <span class="font-bold text-sm tracking-widest uppercase text-gray-900 dark:text-white">P2W Admin Dashboard</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <button id="dashboard-back-btn"
+                    class="flex items-center gap-2 px-4 py-1.5 border border-brand-gold/40 text-brand-gold text-xs tracking-wide hover:bg-brand-gold hover:text-brand-dark transition-colors">
+                    <i class="fas fa-arrow-left text-[10px]"></i> กลับหน้าแรก
+                </button>
+                <button id="admin-logout-btn"
+                    class="flex items-center gap-2 px-4 py-1.5 border border-gray-300 dark:border-gray-700 text-gray-500 text-xs hover:border-red-400 hover:text-red-400 transition-colors">
+                    <i class="fas fa-sign-out-alt text-[10px]"></i> ออกจากระบบ
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="max-w-6xl mx-auto px-6 py-10">
+
+            <!-- Welcome -->
+            <div class="mb-8">
+                <p class="text-brand-gold text-xs tracking-[0.2em] uppercase mb-1">Admin Panel</p>
+                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+            </div>
+
+            <!-- Placeholder Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white dark:bg-[#0B1120] border border-gray-200 dark:border-gray-800 p-5">
+                    <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">ผู้เข้าชมวันนี้</p>
+                    <p class="text-2xl font-bold text-gray-900 dark:text-white">—</p>
+                </div>
+                <div class="bg-white dark:bg-[#0B1120] border border-gray-200 dark:border-gray-800 p-5">
+                    <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">ทั้งหมด</p>
+                    <p class="text-2xl font-bold text-gray-900 dark:text-white">—</p>
+                </div>
+                <div class="bg-white dark:bg-[#0B1120] border border-gray-200 dark:border-gray-800 p-5">
+                    <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">มนุษย์</p>
+                    <p class="text-2xl font-bold text-gray-900 dark:text-white">—</p>
+                </div>
+                <div class="bg-white dark:bg-[#0B1120] border border-gray-200 dark:border-gray-800 p-5">
+                    <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">บอท</p>
+                    <p class="text-2xl font-bold text-gray-900 dark:text-white">—</p>
+                </div>
+            </div>
+
+            <!-- Placeholder area -->
+            <div class="bg-white dark:bg-[#0B1120] border border-gray-200 dark:border-gray-800 p-8 text-center text-gray-400">
+                <i class="fas fa-tools text-2xl mb-3 text-brand-gold/40"></i>
+                <p class="text-sm">กำลังพัฒนา — เพิ่มเติมข้อมูลเร็วๆ นี้</p>
+            </div>
+
+        </div>
+    </div>
 
     <!-- Visitor Tracker → Google Sheets -->
     <script>
