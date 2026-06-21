@@ -469,60 +469,6 @@
         });
     </script>
 
-    <!-- Admin Scripts -->
-    <script>
-    (function() {
-        const ADMIN_PW = 'Chev9872';
-        const trigger   = document.getElementById('admin-trigger');
-        const modal     = document.getElementById('admin-modal');
-        const dashboard = document.getElementById('admin-dashboard');
-        const pwInput   = document.getElementById('admin-pw');
-        const loginBtn  = document.getElementById('admin-login-btn');
-        const cancelBtn = document.getElementById('admin-cancel-btn');
-        const backBtn   = document.getElementById('dashboard-back-btn');
-        const logoutBtn = document.getElementById('admin-logout-btn');
-        const errorMsg  = document.getElementById('admin-error');
-
-        function openModal() {
-            modal.classList.remove('hidden');
-            pwInput.value = '';
-            errorMsg.classList.add('hidden');
-            setTimeout(() => pwInput.focus(), 100);
-        }
-        function closeModal() {
-            modal.classList.add('hidden');
-            pwInput.value = '';
-            errorMsg.classList.add('hidden');
-        }
-        function openDashboard() {
-            closeModal();
-            dashboard.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeDashboard() {
-            dashboard.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-        function tryLogin() {
-            if (pwInput.value === ADMIN_PW) {
-                openDashboard();
-            } else {
-                errorMsg.classList.remove('hidden');
-                pwInput.value = '';
-                pwInput.focus();
-            }
-        }
-
-        trigger.addEventListener('click', openModal);
-        cancelBtn.addEventListener('click', closeModal);
-        loginBtn.addEventListener('click', tryLogin);
-        backBtn.addEventListener('click', closeDashboard);
-        logoutBtn.addEventListener('click', closeDashboard);
-        pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
-        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    })();
-    </script>
-
     <!-- ===== Admin Password Modal ===== -->
     <div id="admin-modal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-sm">
         <div class="bg-white dark:bg-[#0B1120] border border-brand-gold/30 p-8 w-[320px] shadow-2xl">
@@ -688,6 +634,60 @@
                 body: JSON.stringify(payload)
             });
         } catch (_) {}
+    })();
+    </script>
+
+    <!-- Admin Scripts (must be after modal/dashboard HTML) -->
+    <script>
+    (function() {
+        const ADMIN_PW = 'Chev9872';
+        const trigger   = document.getElementById('admin-trigger');
+        const modal     = document.getElementById('admin-modal');
+        const dashboard = document.getElementById('admin-dashboard');
+        const pwInput   = document.getElementById('admin-pw');
+        const loginBtn  = document.getElementById('admin-login-btn');
+        const cancelBtn = document.getElementById('admin-cancel-btn');
+        const backBtn   = document.getElementById('dashboard-back-btn');
+        const logoutBtn = document.getElementById('admin-logout-btn');
+        const errorMsg  = document.getElementById('admin-error');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            pwInput.value = '';
+            errorMsg.classList.add('hidden');
+            setTimeout(() => pwInput.focus(), 100);
+        }
+        function closeModal() {
+            modal.classList.add('hidden');
+            pwInput.value = '';
+            errorMsg.classList.add('hidden');
+        }
+        function openDashboard() {
+            closeModal();
+            dashboard.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDashboard() {
+            dashboard.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        function tryLogin() {
+            if (pwInput.value === ADMIN_PW) {
+                openDashboard();
+            } else {
+                errorMsg.classList.remove('hidden');
+                pwInput.value = '';
+                pwInput.focus();
+            }
+        }
+
+        trigger.addEventListener('click', openModal);
+        cancelBtn.addEventListener('click', closeModal);
+        loginBtn.addEventListener('click', tryLogin);
+        backBtn.addEventListener('click', closeDashboard);
+        logoutBtn.addEventListener('click', closeDashboard);
+        pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
     })();
     </script>
 </body>
