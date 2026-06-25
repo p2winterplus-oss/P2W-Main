@@ -38,12 +38,12 @@ Entry point ของ P2W INTERPLUS ทั้งหมด — ลูกค้า
   - Light mode (`:not(.dark) .hub-spark`): deep amber trail + bright gold tip (ไม่ใช้ white เพราะกลืนกับพื้น)
 
 ## Links ไปแต่ละ Service (URL ปัจจุบัน — GitHub Pages)
-| Service | URL ปัจจุบัน | หมายเหตุ |
-|---------|-------------|---------|
-| วิศวกรรม | `https://p2winterplus-oss.github.io/P2W-Engineer/#home` | เปลี่ยนเมื่อซื้อโดเมน |
-| ที่ปรึกษาการตลาด | `https://p2winterplus-oss.github.io/P2W-Consult/` | เปลี่ยนเมื่อซื้อโดเมน |
+| Service | URL | หมายเหตุ |
+|---------|-----|---------|
+| วิศวกรรม | `https://p2winterplus.com/engineer` | ✅ Live via Cloudflare Worker |
+| ที่ปรึกษาการตลาด | `https://p2winterplus.com/consult` | ✅ Live via Cloudflare Worker |
 | ขายสินค้า | `/shop` | ยังไม่มีหน้า |
-| คอนเทนต์/อินฟลูเอนเซอร์ | `https://p2w-influ-production.up.railway.app/` | Railway hosting |
+| คอนเทนต์/อินฟลูเอนเซอร์ | `https://p2winterplus.com/influ` | ✅ Live via Cloudflare Worker |
 | ประกันภัย | `/insurance` | ยังไม่มีหน้า |
 | โมดิฟายรถ / Remap | `https://www.shiftupperformance.com/` | แยกเว็บ (ไม่เปลี่ยน) |
 
