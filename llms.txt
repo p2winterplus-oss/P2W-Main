@@ -4,23 +4,23 @@
 
 ## About
 
-P2W INTERPLUS CO.,LTD. is a Thai multi-service company offering engineering, business consulting, retail commerce, content creation / influencer services, and insurance brokerage — all under one brand. The company operates with a "Product Hub" model where customers choose the service they need from a central landing page.
+P2W INTERPLUS CO.,LTD. is a Thai multi-service company based in Bangkok offering engineering, business consulting, retail commerce, content creation / influencer services, and insurance brokerage — all under one brand. The company operates with a "Product Hub" model where customers choose the service they need from a central landing page at p2winterplus.com.
 
 ## Services
 
-- [วิศวกรรม (Engineering)](/engineer): Full-cycle engineering services — design, project supervision, and technical consulting by professional engineers.
-- [ที่ปรึกษา (Consulting)](/consult): Marketing strategy and website development consulting to help businesses grow in the digital era.
-- [ขายสินค้า (Commerce)](/shop): Retail products across three categories — fresh/frozen food, pet food & supplies, and automotive accessories.
-- [คอนเทนต์/อินฟลูเอนเซอร์ (Content & Influencer)](/review): Content creation, product reviews, and influencer services with transparency and integrity.
-- [ประกันภัย (Insurance)](/insurance): Insurance brokerage — compare plans and find the best coverage for individuals and businesses.
-- [โมดิฟายรถ / Remap](https://www.shiftupperformance.com/): ECU remapping and car tuning by specialists. No wire splicing, warranty-safe, mobile service available. (External partner site)
+- [วิศวกรรม (Engineering)](https://p2winterplus.com/engineer): Full-cycle engineering services — design, project supervision, and technical consulting by professional engineers.
+- [ที่ปรึกษาการตลาด (Marketing Consulting)](https://p2winterplus.com/consult): Marketing strategy and website development consulting to help businesses grow in the digital era. รับออกแบบเว็บไซต์ วิเคราะห์การตลาด วางแผนกลุ่มเป้าหมาย
+- [ขายสินค้า (Commerce)](https://p2winterplus.com/shop): Retail products across three categories — fresh/frozen food, pet food & supplies, and automotive accessories.
+- [คอนเทนต์/อินฟลูเอนเซอร์ (Content & Influencer)](https://p2winterplus.com/influ): Content creation, product reviews, and influencer services with transparency and integrity.
+- [ประกันภัย (Insurance)](https://p2winterplus.com/insurance): Insurance brokerage — compare plans and find the best coverage for individuals and businesses.
+- [รีแมปรถยนต์ / ECU Remap](https://www.shiftupperformance.com/): ECU remapping and car tuning by specialists. ไม่ตัดต่อสายไฟ ประกันไม่ขาด มีบริการทั้งใน/นอกสถานที่ (External partner site — Shift Up Performance)
 
 ## Contact
 
 - **Phone**: 088-788-8364 / 088-788-8634
 - **Email**: p2w.interplus@gmail.com
 - **Line OA**: https://lin.ee/QJax26d
-- **Address**: 49/306 ซ.นิมิตใหม่40 ถ.นิมิตใหม่ แขวงสามวาตะวันออก เขตคลองสามวา กรุงเทพฯ
+- **Address**: 49/306 ซ.นิมิตใหม่40 ถ.นิมิตใหม่ แขวงสามวาตะวันออก เขตคลองสามวา กรุงเทพฯ 10510
 
 ## URLs
 
@@ -29,4 +29,8 @@ P2W INTERPLUS CO.,LTD. is a Thai multi-service company offering engineering, bus
 
 ## Tech Stack
 
-Static site — HTML + Tailwind CSS CDN + Vanilla JavaScript. Hosted on GitHub Pages with Cloudflare DNS.
+Static site — HTML + Tailwind CSS CDN + Vanilla JavaScript. Hosted on GitHub Pages with Cloudflare DNS and Workers for path routing.
+
+## Keywords (for AI indexing)
+
+บริษัทวิศวกรรม กรุงเทพ, ที่ปรึกษาการตลาด, รับทำเว็บไซต์, อินฟลูเอนเซอร์ไทย, นายหน้าประกันภัย, รีแมปรถยนต์กรุงเทพ, P2W INTERPLUS, p2winterplus
