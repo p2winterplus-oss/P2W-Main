@@ -24,10 +24,9 @@ P2W INTERPLUS CO.,LTD. is a Thai multi-service company offering engineering, bus
 
 ## URLs
 
-- **Website**: https://p2winterplus.com (primary domain, pending registration)
-- **GitHub Pages**: https://p2winterplus-oss.github.io/P2W-Main/ (current hosting)
+- **Website**: https://p2winterplus.com ✅ live
 - **GitHub Repo**: https://github.com/p2winterplus-oss/P2W-Main
 
 ## Tech Stack
 
-Static site — HTML + Tailwind CSS CDN + Vanilla JavaScript. Hosted on GitHub Pages with Cloudflare DNS (planned).
+Static site — HTML + Tailwind CSS CDN + Vanilla JavaScript. Hosted on GitHub Pages with Cloudflare DNS.
