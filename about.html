@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกี่ยวกับเรา | P2W INTERPLUS</title>
+    <link rel="canonical" href="https://p2winterplus.com/about">
+    <meta name="description" content="P2W INTERPLUS CO.,LTD. — รู้จักเรา บริการ และเหตุผลที่ควรเลือกเรา วิศวกรรม ที่ปรึกษา คอนเทนต์ ประกันภัย ครบจบที่เดียว">
+    <meta property="og:title" content="เกี่ยวกับเรา | P2W INTERPLUS">
+    <meta property="og:description" content="หนึ่งแบรนด์ หลายบริการ พร้อมดูแลคุณครบวงจร">
+    <meta property="og:url" content="https://p2winterplus.com/about">
+    <meta property="og:image" content="https://p2winterplus.com/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { dark: '#0B1120', gold: '#D4AF37' }
+                    },
+                    fontFamily: { sans: ['"Prompt"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Prompt', sans-serif; }
+        .text-gold-gradient {
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .gold-line { background: linear-gradient(to right, transparent, #D4AF37, transparent); }
+        @keyframes logo-stroke-pulse {
+            0%, 100% { filter: drop-shadow(1px 0 0 rgba(212,175,55,0.25)) drop-shadow(-1px 0 0 rgba(212,175,55,0.25)) drop-shadow(0 1px 0 rgba(212,175,55,0.25)) drop-shadow(0 -1px 0 rgba(212,175,55,0.25)); }
+            50% { filter: drop-shadow(1px 0 0 rgba(212,175,55,1)) drop-shadow(-1px 0 0 rgba(212,175,55,1)) drop-shadow(0 1px 0 rgba(212,175,55,1)) drop-shadow(0 -1px 0 rgba(212,175,55,1)) drop-shadow(1px 1px 0 rgba(212,175,55,1)) drop-shadow(-1px 1px 0 rgba(212,175,55,1)) drop-shadow(1px -1px 0 rgba(212,175,55,1)) drop-shadow(-1px -1px 0 rgba(212,175,55,1)); }
+        }
+        .dark .logo-strobe { animation: logo-stroke-pulse 5s ease-in-out infinite; }
+        .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+    </style>
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || !('color-theme' in localStorage)) {
+            document.documentElement.classList.add('dark');
+        } else { document.documentElement.classList.remove('dark'); }
+    </script>
+</head>
+<body class="antialiased flex flex-col min-h-screen bg-gray-50 dark:bg-brand-dark text-gray-900 dark:text-gray-100 transition-colors duration-500">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 py-4 bg-white/90 dark:bg-brand-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative flex justify-center items-center w-full">
+
+                <!-- Left: Back to Home -->
+                <a href="/" class="absolute left-0 flex items-center gap-2 px-3 py-1.5 border border-brand-gold/30 text-gray-500 dark:text-gray-400 hover:border-brand-gold hover:text-brand-gold transition-all duration-300 rounded text-xs tracking-wide group">
+                    <i class="fas fa-arrow-left text-sm group-hover:text-brand-gold transition-colors"></i>
+                    <span class="hidden sm:inline font-medium">หน้าหลัก</span>
+                </a>
+
+                <!-- Center Logo -->
+                <a href="/">
+                    <img src="logo.png" alt="P2W INTERPLUS" class="h-16 md:h-20 w-auto object-contain logo-strobe">
+                </a>
+
+                <!-- Right: Line OA + Theme -->
+                <div class="absolute right-0 flex items-center gap-2">
+                    <a href="https://lin.ee/QJax26d" target="_blank" rel="noopener"
+                        class="flex items-center gap-2 px-3 py-1.5 bg-[#06C755] hover:bg-[#05a847] text-white text-xs font-semibold rounded transition-colors shadow-sm">
+                        <i class="fab fa-line text-sm"></i>
+                        <span class="hidden sm:inline">ติดต่อด่วน</span>
+                    </a>
+                    <button id="theme-toggle" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2 transition-colors">
+                        <i id="theme-toggle-dark-icon" class="hidden fas fa-moon text-lg"></i>
+                        <i id="theme-toggle-light-icon" class="hidden fas fa-sun text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-28">
+
+        <!-- ── Hero ── -->
+        <section class="text-center px-4 py-16 fade-up">
+            <p class="text-brand-gold tracking-[0.3em] uppercase text-xs font-medium mb-4">About Us</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                P2W <span class="text-gold-gradient">INTERPLUS</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-500 dark:text-gray-400 font-light max-w-xl mx-auto mb-6">
+                หนึ่งแบรนด์ หลายบริการ<br>พร้อมดูแลคุณครบวงจร
+            </p>
+            <div class="gold-line h-px w-24 mx-auto"></div>
+        </section>
+
+        <!-- ── Who We Are ── -->
+        <section class="max-w-4xl mx-auto px-6 py-12 fade-up">
+            <div class="bg-white dark:bg-[#0d1629] border border-gray-200 dark:border-gray-800 p-8 md:p-12">
+                <p class="text-brand-gold text-xs tracking-[0.25em] uppercase mb-4">เราคือใคร</p>
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900 dark:text-white">P2W INTERPLUS CO.,LTD.</h2>
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm md:text-base mb-4">
+                    บริษัท P2W INTERPLUS จำกัด คือบริษัทไทยที่รวบรวมบริการหลากหลายด้านไว้ภายใต้แบรนด์เดียวกัน
+                    ก่อตั้งขึ้นด้วยแนวคิด <strong class="text-brand-gold">"Product Hub"</strong> — ให้ลูกค้าสามารถเข้าถึงบริการที่ต้องการได้จากจุดเดียว
+                    ไม่ว่าจะเป็นงานวิศวกรรม การตลาด คอนเทนต์ ประกันภัย หรือสินค้า
+                </p>
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm md:text-base">
+                    เราเชื่อว่าธุรกิจที่ดีต้องการพันธมิตรที่ครบวงจร — และนั่นคือสิ่งที่เราเป็น
+                </p>
+                <div class="mt-8 grid grid-cols-3 gap-4 text-center">
+                    <div class="border border-brand-gold/20 p-4">
+                        <p class="text-2xl font-bold text-brand-gold">6</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">บริการ</p>
+                    </div>
+                    <div class="border border-brand-gold/20 p-4">
+                        <p class="text-2xl font-bold text-brand-gold">1</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">แบรนด์</p>
+                    </div>
+                    <div class="border border-brand-gold/20 p-4">
+                        <p class="text-2xl font-bold text-brand-gold">∞</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">ความเป็นไปได้</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Services ── -->
+        <section class="max-w-5xl mx-auto px-6 py-12 fade-up">
+            <p class="text-brand-gold text-xs tracking-[0.25em] uppercase text-center mb-2">สิ่งที่เราทำ</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">บริการทั้งหมดของเรา</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                <a href="https://p2winterplus.com/engineer" class="group bg-white dark:bg-[#0d1629] border border-gray-200 dark:border-gray-800 hover:border-brand-gold/60 p-6 transition-all duration-300">
+                    <div class="w-10 h-10 border border-brand-gold/40 group-hover:border-brand-gold flex items-center justify-center mb-4 transition-colors">
+                        <i class="fas fa-hard-hat text-brand-gold"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-brand-gold transition-colors">วิศวกรรม</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">บริการวิศวกรรมครบวงจร — ออกแบบ ควบคุมงาน และที่ปรึกษาด้านเทคนิคโดยวิศวกรมืออาชีพ</p>
+                </a>
+
+                <a href="https://p2winterplus.com/consult" class="group bg-white dark:bg-[#0d1629] border border-gray-200 dark:border-gray-800 hover:border-brand-gold/60 p-6 transition-all duration-300">
+                    <div class="w-10 h-10 border border-brand-gold/40 group-hover:border-brand-gold flex items-center justify-center mb-4 transition-colors">
+                        <i class="fas fa-handshake text-brand-gold"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-brand-gold transition-colors">ที่ปรึกษาการตลาด</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">รับออกแบบเว็บไซต์ วิเคราะห์การตลาด วางแผนกลุ่มเป้าหมาย ออกแบบระบบ และเพิ่มยอดขาย</p>
+                </a>
+
+                <a href="https://p2winterplus.com/influ" class="group bg-white dark:bg-[#0d1629] border border-gray-200 dark:border-gray-800 hover:border-brand-gold/60 p-6 transition-all duration-300">
+                    <div class="w-10 h-10 border border-brand-gold/40 group-hover:border-brand-gold flex items-center justify-center mb-4 transition-colors">
+                        <i class="fas fa-star text-brand-gold"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-brand-gold transition-colors">คอนเทนต์ / อินฟลูเอนเซอร์</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">สร้างคอนเทนต์ รีวิวสินค้า และบริการอินฟลูเอนเซอร์ด้วยความโปร่งใสและซื่อสัตย์</p>
+                </a>
+
+                <a href="https://p2winterplus.com/shop" class="group bg-white dark:bg-[#0d1629] border border-gray-200 dark:border-gray-800 hover:border-brand-gold/60 p-6 transition-all duration-300">
+                    <div class="w-10 h-10 border border-brand-gold/40 group-hover:border-brand-gold flex items-center justify-center mb-4 transition-colors">
+                        <i class="fas fa-shopping-bag text-brand-gold"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-brand-gold transition-colors">ขายสินค้า</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">สินค้าหลากหลายหมวด — อาหารสด/แช่แข็ง อาหารสัตว์เลี้ยง และของแต่งรถยนต์</p>
+                </a>
+
+                <a href="https://p2winterplus.com/insurance" class="group bg-white dark:bg-[#0d1629] border border-gray-200 dark:border-gray-800 hover:border-brand-gold/60 p-6 transition-all duration-300">
+                    <div class="w-10 h-10 border border-brand-gold/40 group-hover:border-brand-gold flex items-center justify-center mb-4 transition-colors">
+                        <i class="fas fa-shield-alt text-brand-gold"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-brand-gold transition-colors">ประกันภัย</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">นายหน้าประกันภัย เปรียบเทียบแผนและหาความคุ้มครองที่ดีที่สุดสำหรับคุณและธุรกิจ</p>
+                </a>
+
+                <a href="https://www.shiftupperformance.com/" target="_blank" rel="noopener" class="group bg-white dark:bg-[#0d1629] border border-gray-200 dark:border-gray-800 hover:border-brand-gold/60 p-6 transition-all duration-300">
+                    <div class="w-10 h-10 border border-brand-gold/40 group-hover:border-brand-gold flex items-center justify-center mb-4 transition-colors">
+                        <i class="fas fa-car text-brand-gold"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-brand-gold transition-colors">โมดิฟายรถ / Remap <i class="fas fa-external-link-alt text-[10px] text-gray-400 ml-1"></i></h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">รีแมปกล่อง ECU ไม่ตัดต่อสายไฟ รถไม่ช้ำ ประกันไม่ขาด บริการทั้งใน/นอกสถานที่</p>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ── Why Choose Us ── -->
+        <section class="bg-white dark:bg-[#080e1c] border-y border-gray-200 dark:border-gray-800 py-16 px-6 fade-up">
+            <div class="max-w-4xl mx-auto">
+                <p class="text-brand-gold text-xs tracking-[0.25em] uppercase text-center mb-2">ทำไมต้องเลือกเรา</p>
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">จุดแข็งของ P2W INTERPLUS</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 border border-brand-gold/40 flex items-center justify-center">
+                            <i class="fas fa-layer-group text-brand-gold text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 dark:text-white mb-1">ครบจบที่เดียว</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">ไม่ต้องวิ่งหาหลายเจ้า ทุกบริการที่ธุรกิจต้องการอยู่ภายใต้หลังคาเดียวกัน</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 border border-brand-gold/40 flex items-center justify-center">
+                            <i class="fas fa-user-tie text-brand-gold text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 dark:text-white mb-1">ทีมงานมืออาชีพ</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">แต่ละด้านดูแลโดยผู้เชี่ยวชาญเฉพาะทาง ที่มีประสบการณ์จริงในสาขานั้นๆ</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 border border-brand-gold/40 flex items-center justify-center">
+                            <i class="fas fa-handshake text-brand-gold text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 dark:text-white mb-1">ซื่อสัตย์และโปร่งใส</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">บอกตรงๆ ทำจริง ไม่ขายฝัน ลูกค้าได้รับข้อมูลที่ถูกต้องก่อนตัดสินใจเสมอ</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 border border-brand-gold/40 flex items-center justify-center">
+                            <i class="fas fa-headset text-brand-gold text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 dark:text-white mb-1">ดูแลหลังการขาย</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">ไม่ทิ้งลูกค้าหลังปิดงาน ติดตามผลและพร้อมให้คำปรึกษาต่อเนื่อง</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Contact ── -->
+        <section class="max-w-3xl mx-auto px-6 py-16 text-center fade-up">
+            <p class="text-brand-gold text-xs tracking-[0.25em] uppercase mb-2">ติดต่อเรา</p>
+            <h2 class="text-2xl md:text-3xl font-bold mb-10 text-gray-900 dark:text-white">พร้อมพูดคุยทุกเวลา</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <div class="bg-white dark:bg-[#0d1629] border border-gray-200 dark:border-gray-800 p-5 text-left">
+                    <i class="fas fa-phone text-brand-gold text-sm mb-3 block"></i>
+                    <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">โทรศัพท์</p>
+                    <p class="font-medium text-gray-900 dark:text-white text-sm">088-788-8364</p>
+                    <p class="font-medium text-gray-900 dark:text-white text-sm">088-788-8634</p>
+                </div>
+                <div class="bg-white dark:bg-[#0d1629] border border-gray-200 dark:border-gray-800 p-5 text-left">
+                    <i class="fas fa-envelope text-brand-gold text-sm mb-3 block"></i>
+                    <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">อีเมล</p>
+                    <p class="font-medium text-gray-900 dark:text-white text-sm">p2w.interplus@gmail.com</p>
+                </div>
+                <div class="bg-white dark:bg-[#0d1629] border border-gray-200 dark:border-gray-800 p-5 text-left">
+                    <i class="fas fa-map-marker-alt text-brand-gold text-sm mb-3 block"></i>
+                    <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">ที่อยู่</p>
+                    <p class="font-medium text-gray-900 dark:text-white text-sm leading-relaxed">49/306 ซ.นิมิตใหม่40 ถ.นิมิตใหม่<br>แขวงสามวาตะวันออก เขตคลองสามวา กทม.</p>
+                </div>
+                <div class="bg-white dark:bg-[#0d1629] border border-gray-200 dark:border-gray-800 p-5 text-left flex flex-col justify-between">
+                    <div>
+                        <i class="fab fa-line text-brand-gold text-sm mb-3 block"></i>
+                        <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Line OA</p>
+                        <p class="font-medium text-gray-900 dark:text-white text-sm mb-4">@P2W INTERPLUS</p>
+                    </div>
+                    <a href="https://lin.ee/QJax26d" target="_blank" rel="noopener"
+                        class="flex items-center justify-center gap-2 py-2.5 bg-[#06C755] hover:bg-[#05a847] text-white text-sm font-semibold rounded transition-colors">
+                        <i class="fab fa-line"></i> เพิ่มเพื่อน
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 dark:border-gray-800 py-6 text-center">
+        <p class="text-xs text-gray-400">© 2026 P2W INTERPLUS CO.,LTD. All rights reserved.</p>
+        <a href="/" class="text-xs text-brand-gold hover:text-yellow-400 transition-colors mt-1 inline-block">← กลับหน้าหลัก</a>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const toggleBtn = document.getElementById('theme-toggle');
+        const darkIcon  = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function updateIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                darkIcon.classList.remove('hidden'); lightIcon.classList.add('hidden');
+            } else {
+                darkIcon.classList.add('hidden'); lightIcon.classList.remove('hidden');
+            }
+        }
+        updateIcon();
+        toggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+            updateIcon();
+        });
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

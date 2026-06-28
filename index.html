@@ -182,16 +182,30 @@
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 bg-white/90 dark:bg-brand-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
         <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="relative flex justify-center items-center w-full">
+
+                <!-- Left: About Button -->
+                <a href="/about" class="absolute left-0 flex items-center gap-2 px-3 py-1.5 border border-brand-gold/30 text-gray-500 dark:text-gray-400 hover:border-brand-gold hover:text-brand-gold transition-all duration-300 rounded text-xs tracking-wide group">
+                    <i class="fas fa-building text-sm group-hover:text-brand-gold transition-colors"></i>
+                    <span class="hidden sm:inline font-medium">เกี่ยวกับเรา</span>
+                </a>
+
                 <!-- Center Logo -->
                 <div class="flex items-center cursor-pointer">
                     <img src="logo.png" alt="P2W INTERPLUS" class="h-20 md:h-24 w-auto object-contain logo-strobe">
                 </div>
 
-                <!-- Theme Toggle Button -->
-                <button id="theme-toggle" type="button" class="absolute right-0 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2 md:p-2.5 transition-colors">
-                    <i id="theme-toggle-dark-icon" class="hidden fas fa-moon text-lg md:text-xl"></i>
-                    <i id="theme-toggle-light-icon" class="hidden fas fa-sun text-lg md:text-xl"></i>
-                </button>
+                <!-- Right: Line OA + Theme Toggle -->
+                <div class="absolute right-0 flex items-center gap-2">
+                    <a href="https://lin.ee/QJax26d" target="_blank" rel="noopener"
+                        class="flex items-center gap-2 px-3 py-1.5 bg-[#06C755] hover:bg-[#05a847] text-white text-xs font-semibold rounded transition-colors duration-300 shadow-sm">
+                        <i class="fab fa-line text-sm"></i>
+                        <span class="hidden sm:inline tracking-wide">ติดต่อด่วน</span>
+                    </a>
+                    <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none rounded-lg text-sm p-2 md:p-2.5 transition-colors">
+                        <i id="theme-toggle-dark-icon" class="hidden fas fa-moon text-lg md:text-xl"></i>
+                        <i id="theme-toggle-light-icon" class="hidden fas fa-sun text-lg md:text-xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
