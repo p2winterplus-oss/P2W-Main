@@ -6,11 +6,10 @@
 ## โปรเจกต์นี้คืออะไร
 Entry point ของ P2W INTERPLUS ทั้งหมด — ลูกค้าเข้ามาแล้วเลือก service ที่ต้องการ ไม่มีรายละเอียดเชิงลึก หน้าย่อยแต่ละอันดูแลเอง
 
-- **Live URL**: https://p2winterplus.com (รอซื้อโดเมน)
-- **GitHub Pages**: https://p2winterplus-oss.github.io/P2W-Main/ (hosting ปัจจุบัน)
+- **Live URL**: https://p2winterplus.com ✅ (GoDaddy domain + Cloudflare DNS + GitHub Pages)
 - **Repo**: https://github.com/p2winterplus-oss/P2W-Main ✅
-- **Hosted**: GitHub Pages
-- **Stack**: HTML + Tailwind CSS CDN + Vanilla JavaScript (single file: index.html)
+- **Hosted**: GitHub Pages (CNAME → p2winterplus.com)
+- **Stack**: HTML + Tailwind CSS CDN + Vanilla JavaScript
 
 ## Design System
 - **Primary color**: Gold `#D4AF37`
@@ -20,10 +19,20 @@ Entry point ของ P2W INTERPLUS ทั้งหมด — ลูกค้า
 - **Dark/Light mode toggle**: localStorage (`color-theme`) — default = dark
 
 ## โครงสร้างหน้า (ปัจจุบัน)
-1. **Navbar** — Logo (logo.png) + dark mode toggle — centered logo, toggle ขวา
-2. **Hero** — "Welcome to The Hub" + headline + คำอธิบาย
-3. **Accordion Hub** — 6 panels เรียงแนวนอน (desktop) / แนวตั้ง (mobile) พร้อม animated border
-4. **Footer** — Logo + Branding + Contact + Social links + hidden admin trigger
+
+### index.html
+1. **Navbar** — Logo (logo.png) + about button (left) + Line OA + theme toggle (right)
+2. **Hero** — "P2W INTERPLUS GROUP" + subtitle "ขับเคลื่อนทุกความเป็นไปได้ ผ่านเครือข่ายบริการที่ครอบคลุมของเรา"
+3. **Accordion Hub** — 6 panels เรียงแนวนอน (desktop) / แนวตั้ง (mobile) พร้อม animated border และ description text ใน hover state ทุก panel
+4. **Footer** — Logo + Branding text ("มากกว่าการบูรณาการธุรกิจ เราคือพื้นที่รวม 'ตัวจริง' จากทุกวงการ…") + Contact + Social + hidden admin trigger
+
+### about.html
+1. **Navbar** — Back button (left) + Logo center + Line OA + theme toggle (right)
+2. **Hero** — "WE DON'T JUST ADAPT. WE CREATE." + subtitle
+3. **เราคือใคร** — body text (Startup culture + "คิดไว ทำจริง และปรับตัวเร็ว" in gold) + 3 feature cards (Agile Execution / Synergy of Creators / Limitless Solutions)
+4. **บริการทั้งหมด** — 6 service cards พร้อม `.hex-icon` (3D hexagon icon style)
+5. **ทำไมต้องเลือกเรา** — 4 items พร้อม `.hex-icon`
+6. **Contact** — phone / email / address / Line
 
 ## Logo
 - ไฟล์: `logo.png`
@@ -56,10 +65,12 @@ Entry point ของ P2W INTERPLUS ทั้งหมด — ลูกค้า
 ## ไฟล์ในโปรเจกต์
 | ไฟล์ | หน้าที่ |
 |------|---------|
-| `index.html` | หน้าหลักทั้งหมด (single file) |
+| `index.html` | หน้าหลัก accordion hub |
+| `about.html` | หน้าเกี่ยวกับเรา (`.hex-icon` 3D hexagon style) |
 | `logo.png` | โลโก้บริษัท |
 | `robots.txt` | อนุญาต bot และ AI crawler ทุกเจ้า |
 | `llms.txt` | ข้อมูลสำหรับ LLM / AI ที่ crawl เว็บ |
+| `sitemap.xml` | Sitemap ส่ง Google Search Console |
 
 ## Visitor Tracking
 - **Script**: ฝังใน index.html (บน visitor tracker ก่อน `</body>`)
@@ -89,17 +100,21 @@ Entry point ของ P2W INTERPLUS ทั้งหมด — ลูกค้า
 
 ## Progress
 ### Done ✅
-- สร้าง index.html — accordion hub design
+- สร้าง index.html — accordion hub design (6 panels + description text ทุก panel)
 - สร้าง GitHub repo + deploy GitHub Pages
 - ใส่โลโก้ (logo.png) + dark mode stroke animation
 - robots.txt (allow all bots + AI crawlers)
 - llms.txt (LLM-friendly site description)
+- sitemap.xml → submit Google Search Console
+- SEO: meta tags, Open Graph, JSON-LD structured data, canonical tag
 - Visitor tracking → Google Sheets (real-time)
-- Light mode accordion: dark slate border + amber spark (ไม่กลืนกับพื้นอีกต่อไป)
+- Light mode accordion: dark slate border + amber spark
 - Admin Dashboard: hidden login, password modal, stats cards, visitor table, theme toggle
+- ซื้อโดเมน p2winterplus.com (GoDaddy) + Cloudflare DNS + Enforce HTTPS ✅
+- Cloudflare Workers routing (/engineer, /consult, /influ) ✅
+- Navbar อัปเดต: about button (left), Line OA button + theme toggle (right)
+- about.html: ครบทุก section + `.hex-icon` 3D hexagon icon style
 
 ### Next ❌
 - เพิ่ม doGet() ใน Apps Script + Deploy ใหม่ (เพื่อให้ Dashboard ดึงข้อมูลได้)
-- ซื้อโดเมน p2winterplus.com
-- ตั้ง Cloudflare DNS routing
-- สร้างหน้าย่อย /shop, /insurance (engineer + consult + review มีแล้ว)
+- สร้างหน้าย่อย /shop, /insurance
