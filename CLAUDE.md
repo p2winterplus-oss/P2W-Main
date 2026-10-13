@@ -58,7 +58,7 @@ Entry point ของ P2W INTERPLUS ทั้งหมด — ลูกค้า
 
 ## Contact Info
 - Phone: 088-788-8364 / 088-788-8634
-- Email: p2w.interplus@gmail.com
+- Email: adm.p2winterplus@gmail.com
 - Line OA: https://lin.ee/QJax26d
 - Address: 49/306 ซ.นิมิตใหม่40 ถ.นิมิตใหม่ แขวงสามวาตะวันออก เขตคลองสามวา กรุงเทพฯ
 
