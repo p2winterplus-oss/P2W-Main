@@ -127,6 +127,11 @@ Entry point ของ P2W INTERPLUS ทั้งหมด — ลูกค้า
 - about.html: ครบทุก section + `.hex-icon` 3D hexagon icon style
 - ปรับชื่อบริษัท/เลขทะเบียนให้ตรงหนังสือรับรอง + สร้างหน้า /privacy /terms + sitemap (28 ต.ค. 2569) เพื่อยืนยันธุรกิจ Meta
 
+- เพิ่มอีเมล info@p2winterplus.com ทุกหน้า + ซ่อนอีเมลหลังบ้าน Meta ใน JSON-LD (28 ต.ค. 2569)
+
 ### Next ❌
+- ยืนยันธุรกิจ Meta ใหม่หลัง deploy (ชื่อใน Business Manager = "P2W INTERPLUS COMPANY LIMITED"; ถ้าไม่ผ่านลองชื่อไทย หรือยืนยันด้วยอีเมลโดเมน)
+- ตั้ง Cloudflare Email Routing ให้ info@p2winterplus.com ส่งต่อเข้า Gmail แล้วทดสอบส่งเมล (ยังไม่ยืนยันว่าใช้งานได้)
+- แก้ชื่อบริษัท/footer ใน repo หน้าลูก /engineer, /consult, /influ ให้ตรงกับหนังสือรับรอง
 - เพิ่ม doGet() ใน Apps Script + Deploy ใหม่ (เพื่อให้ Dashboard ดึงข้อมูลได้)
 - สร้างหน้าย่อย /shop, /insurance
