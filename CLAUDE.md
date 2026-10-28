@@ -34,6 +34,14 @@ Entry point ของ P2W INTERPLUS ทั้งหมด — ลูกค้า
 5. **ทำไมต้องเลือกเรา** — 4 items พร้อม `.hex-icon`
 6. **Contact** — phone / email / address / Line
 
+## ข้อมูลนิติบุคคล (ตรงกับหนังสือรับรอง ออก 17 เม.ย. 2569 — ใช้ยืนยันธุรกิจกับ Meta)
+- ชื่อไทย: บริษัท พีทูดับบลิว อินเตอร์พลัส จำกัด
+- ชื่ออังกฤษ: P2W INTERPLUS COMPANY LIMITED (ห้ามใช้ "CO.,LTD." — Meta ตรวจชื่อตามกฎหมายต้องตรงตัว)
+- เลขทะเบียนนิติบุคคล: 0105569073751
+- ต้องแสดงชื่อ + เลขทะเบียนให้เห็นบนหน้าเว็บ (footer ของ index/about/privacy/terms) ไม่ใช่แค่ใน JSON-LD
+- Facebook เพจในเครือ (ใส่เฉพาะ JSON-LD `sameAs` ใน index.html ไม่แสดงบนหน้าเว็บ): pingstores, shiftupperformance, ipingofficial, Deepsolarbypk, Infinisfood
+- Footer ไม่มีปุ่ม Facebook/Instagram (ตั้งใจไม่ให้คนกดออกจากเว็บ) เหลือแค่ LINE
+
 ## Logo
 - ไฟล์: `logo.png`
 - Dark mode: pulse outer stroke animation (gold, 1px, 5s) ใช้ CSS `drop-shadow` 8 ทิศทาง
@@ -67,6 +75,8 @@ Entry point ของ P2W INTERPLUS ทั้งหมด — ลูกค้า
 |------|---------|
 | `index.html` | หน้าหลัก accordion hub |
 | `about.html` | หน้าเกี่ยวกับเรา (`.hex-icon` 3D hexagon style) |
+| `privacy.html` | นโยบายความเป็นส่วนตัว (`/privacy`) |
+| `terms.html` | ข้อกำหนดการใช้งาน (`/terms`) |
 | `logo.png` | โลโก้บริษัท |
 | `robots.txt` | อนุญาต bot และ AI crawler ทุกเจ้า |
 | `llms.txt` | ข้อมูลสำหรับ LLM / AI ที่ crawl เว็บ |
@@ -114,6 +124,7 @@ Entry point ของ P2W INTERPLUS ทั้งหมด — ลูกค้า
 - Cloudflare Workers routing (/engineer, /consult, /influ) ✅
 - Navbar อัปเดต: about button (left), Line OA button + theme toggle (right)
 - about.html: ครบทุก section + `.hex-icon` 3D hexagon icon style
+- ปรับชื่อบริษัท/เลขทะเบียนให้ตรงหนังสือรับรอง + สร้างหน้า /privacy /terms + sitemap (28 ต.ค. 2569) เพื่อยืนยันธุรกิจ Meta
 
 ### Next ❌
 - เพิ่ม doGet() ใน Apps Script + Deploy ใหม่ (เพื่อให้ Dashboard ดึงข้อมูลได้)
